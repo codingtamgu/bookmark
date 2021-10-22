@@ -10,3 +10,12 @@ class Bookmark(models.Model):
 
     def get_absolute_url(self):
         return reverse('detail', args=[str(self.id)])
+    
+class Post(models.Model):
+    author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    text = models.TextField()
+    pub_date = models.DateTimeField(default = timezone.now)
+
+    def __str__(self):
+        return self.title
